@@ -1,6 +1,6 @@
 # ScheduledTickDispatcherLib
 
-**ScheduledTickDispatcherLib** is a lightweight **library mod** built on top of the **Fabric API**, providing a clean, secure, and memory-safe way to schedule ticking tasks in Minecraft.
+**ScheduledTickDispatcherLib** is a lightweight **library mod** built on top of the **Fabric API** for `1.21.4` and `1.21.5`, providing a clean, secure, and memory-safe way to schedule ticking tasks in Minecraft.
 
 Designed for mod developers, it allows you to register both **immediate** and **delayed** tasks that automatically **unregister themselves** upon completion (or allow you to **unregister them manually**) — eliminating memory leaks and ensuring optimal performance.
 
