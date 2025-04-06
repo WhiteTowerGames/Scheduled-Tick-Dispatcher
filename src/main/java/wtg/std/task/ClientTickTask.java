@@ -25,7 +25,7 @@ public class ClientTickTask extends AbstractTickTask<Minecraft> {
      *
      * @param delayedClientTickTask the delayed task to convert
      */
-    private ClientTickTask(@NotNull DelayedClientTickTask delayedClientTickTask){
+    public ClientTickTask(@NotNull DelayedClientTickTask delayedClientTickTask){
         this(delayedClientTickTask.duration.get(), delayedClientTickTask.getAction());
     }
 
