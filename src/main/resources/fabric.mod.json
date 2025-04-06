@@ -1,11 +1,11 @@
 {
 	"schemaVersion": 1,
-	"id": "scheduledtickdispatcher",
+	"id": "std",
 	"version": "${version}",
 	"name": "ScheduledTickDispatcher",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
-		"Me!"
+		"WhiteTowerGames"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -21,7 +21,7 @@
 	},
 	"depends": {
 		"fabricloader": ">=0.16.12",
-		"minecraft": "~1.21.4",
+		"minecraft": "1.21.*",
 		"java": ">=21",
 		"fabric-api": "*"
 	},
