@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 /// This class implements the Consumer interface, allowing it to be used as a callback.
 /// The task automatically marks itself as complete and removes itself completely once it does so.
 /// The task can be manually marked as complete by calling the complete() method.
-public abstract class AbstractTickTask<T> implements Consumer<T>, TickTaskUtils{
+public abstract class AbstractTickTask<T> implements TickTaskUtils{
 
     /**
      * Indicates whether the task is complete.
@@ -21,6 +21,10 @@ public abstract class AbstractTickTask<T> implements Consumer<T>, TickTaskUtils{
      */
     public AtomicInteger duration;
 
+    /**
+     * The initial duration of the task in ticks.
+     */
+    public int initialDuration;
     /**
      * The action to be performed by the task.
      */
@@ -37,6 +41,7 @@ public abstract class AbstractTickTask<T> implements Consumer<T>, TickTaskUtils{
             throw new IllegalArgumentException("Duration must be greater than 0!");
         }
         this.duration = new AtomicInteger(duration);
+        this.initialDuration = duration;
         this.action = action;
     }
 
@@ -65,4 +70,13 @@ public abstract class AbstractTickTask<T> implements Consumer<T>, TickTaskUtils{
         return this.action;
     }
 
+    public void accept(T t) {
+        if (isIncomplete()) {
+            getAction().accept(t);
+            if (duration.decrementAndGet() > 0) {
+                return;
+            }
+            complete();
+        }
+    }
 }

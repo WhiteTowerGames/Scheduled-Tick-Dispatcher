@@ -1,6 +1,7 @@
 package wtg.std.task;
 
 import net.minecraft.client.Minecraft;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -29,6 +30,10 @@ public class DelayedClientTickTask extends AbstractDelayedTickTask<Minecraft> {
      */
     public DelayedClientTickTask(ClientTickTask clientTickTask, int delay) {
         this(clientTickTask.duration.get(), clientTickTask.getAction(), delay);
+    }
+
+    public static DelayedClientTickTask restart(@NotNull DelayedClientTickTask clientTickTask) {
+        return new DelayedClientTickTask(clientTickTask.initialDuration, clientTickTask.getAction(), clientTickTask.delay.get());
     }
 
     /**

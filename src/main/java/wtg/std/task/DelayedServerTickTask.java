@@ -30,6 +30,10 @@ package wtg.std.task;
             this(serverTickTask.duration.get(), serverTickTask.getAction(), delay);
         }
 
+        public static DelayedServerTickTask restart(DelayedServerTickTask serverTickTask) {
+            return new DelayedServerTickTask(serverTickTask.initialDuration, serverTickTask.getAction(), serverTickTask.delay.get());
+        }
+
         /**
          * Attempts to execute the task on the given Minecraft server.
          * If the delay has not expired, the task will not execute.

@@ -4,7 +4,7 @@ import net.minecraft.server.MinecraftServer;
 import wtg.std.BackgroundLifecycleOperationsWrapper;
 import wtg.std.ScheduledTickDispatcher;
 
-import java.util.Set;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -23,8 +23,8 @@ public enum ServerEvents {
     END_SERVER_WORLD_TICK(BackgroundLifecycleOperationsWrapper::getEndServerWorldTickTasks,
             BackgroundLifecycleOperationsWrapper::getEndServerWorldTickTasksDelayed);
 
-    private final Supplier<Set<ServerTickTask>> tasks;
-    private final Supplier<Set<DelayedServerTickTask>> delayedTasks;
+    private final Supplier<List<ServerTickTask>> tasks;
+    private final Supplier<List<DelayedServerTickTask>> delayedTasks;
     private final int MAX_TASKS_PER_PHASE = 30;
 
     /**
@@ -33,7 +33,7 @@ public enum ServerEvents {
      * @param tasks Supplier for the set of server tick tasks.
      * @param delayedTasks Supplier for the set of delayed server tick tasks.
      */
-    ServerEvents(Supplier<Set<ServerTickTask>> tasks, Supplier<Set<DelayedServerTickTask>> delayedTasks) {
+    ServerEvents(Supplier<List<ServerTickTask>> tasks, Supplier<List<DelayedServerTickTask>> delayedTasks) {
         this.tasks = tasks;
         this.delayedTasks = delayedTasks;
     }
@@ -123,26 +123,6 @@ public enum ServerEvents {
         }
         phase.register(task);
         return task;
-    }
-
-    /**
-     * Unregisters a server tick task from a specific phase.
-     *
-     * @param phase The server event phase.
-     * @param task The server tick task to unregister.
-     */
-    public static void unregisterFromPhase(ServerEvents phase, ServerTickTask task) {
-        phase.tasks.get().remove(task);
-    }
-
-    /**
-     * Unregisters a delayed server tick task from a specific phase.
-     *
-     * @param phase The server event phase.
-     * @param task The delayed server tick task to unregister.
-     */
-    public static void unregisterFromPhase(ServerEvents phase, DelayedServerTickTask task) {
-        phase.delayedTasks.get().remove(task);
     }
 
     /**

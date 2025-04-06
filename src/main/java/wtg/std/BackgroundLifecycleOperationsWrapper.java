@@ -5,89 +5,89 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.client.Minecraft;
 import wtg.std.task.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BackgroundLifecycleOperationsWrapper {
 
     // Client start tick tasks
-    private static final Set<ClientTickTask> START_CLIENT_TICK_TASKS = new HashSet<>();
-    private static final Set<DelayedClientTickTask> START_CLIENT_TICK_TASKS_DELAYED = new HashSet<>();
+    private static final List<ClientTickTask> START_CLIENT_TICK_TASKS = new ArrayList<>();
+    private static final List<DelayedClientTickTask> START_CLIENT_TICK_TASKS_DELAYED = new ArrayList<>();
     
     // Client end tick tasks
-    private static final Set<ClientTickTask> END_CLIENT_TICK_TASKS = new HashSet<>();
-    private static final Set<DelayedClientTickTask> END_CLIENT_TICK_TASKS_DELAYED = new HashSet<>();
+    private static final List<ClientTickTask> END_CLIENT_TICK_TASKS = new ArrayList<>();
+    private static final List<DelayedClientTickTask> END_CLIENT_TICK_TASKS_DELAYED = new ArrayList<>();
     
     // Start Client world tick tasks
-    private static final Set<ClientTickTask> START_CLIENT_WORLD_TICK_TASKS = new HashSet<>();
-    private static final Set<DelayedClientTickTask> START_CLIENT_WORLD_TICK_TASKS_DELAYED = new HashSet<>();
+    private static final List<ClientTickTask> START_CLIENT_WORLD_TICK_TASKS = new ArrayList<>();
+    private static final List<DelayedClientTickTask> START_CLIENT_WORLD_TICK_TASKS_DELAYED = new ArrayList<>();
     
     // End Client world tick tasks
-    private static final Set<ClientTickTask> END_CLIENT_WORLD_TICK_TASKS = new HashSet<>();
-    private static final Set<DelayedClientTickTask> END_CLIENT_WORLD_TICK_TASKS_DELAYED = new HashSet<>();
+    private static final List<ClientTickTask> END_CLIENT_WORLD_TICK_TASKS = new ArrayList<>();
+    private static final List<DelayedClientTickTask> END_CLIENT_WORLD_TICK_TASKS_DELAYED = new ArrayList<>();
     
     // Server start tick tasks
-    private static final Set<ServerTickTask> START_SERVER_TICK_TASKS = new HashSet<>();
-    private static final Set<DelayedServerTickTask> START_SERVER_TICK_TASKS_DELAYED = new HashSet<>();
+    private static final List<ServerTickTask> START_SERVER_TICK_TASKS = new ArrayList<>();
+    private static final List<DelayedServerTickTask> START_SERVER_TICK_TASKS_DELAYED = new ArrayList<>();
     
     // Server end tick tasks
-    private static final Set<ServerTickTask> END_SERVER_TICK_TASKS = new HashSet<>();
-    private static final Set<DelayedServerTickTask> END_SERVER_TICK_TASKS_DELAYED = new HashSet<>();
+    private static final List<ServerTickTask> END_SERVER_TICK_TASKS = new ArrayList<>();
+    private static final List<DelayedServerTickTask> END_SERVER_TICK_TASKS_DELAYED = new ArrayList<>();
     
     // Start Server world tick tasks
-    private static final Set<ServerTickTask> START_SERVER_WORLD_TICK_TASKS = new HashSet<>();
-    private static final Set<DelayedServerTickTask> START_SERVER_WORLD_TICK_TASKS_DELAYED = new HashSet<>();
+    private static final List<ServerTickTask> START_SERVER_WORLD_TICK_TASKS = new ArrayList<>();
+    private static final List<DelayedServerTickTask> START_SERVER_WORLD_TICK_TASKS_DELAYED = new ArrayList<>();
     
     // End Server world tick tasks
-    private static final Set<ServerTickTask> END_SERVER_WORLD_TICK_TASKS = new HashSet<>();
-    private static final Set<DelayedServerTickTask> END_SERVER_WORLD_TICK_TASKS_DELAYED = new HashSet<>();
+    private static final List<ServerTickTask> END_SERVER_WORLD_TICK_TASKS = new ArrayList<>();
+    private static final List<DelayedServerTickTask> END_SERVER_WORLD_TICK_TASKS_DELAYED = new ArrayList<>();
 
-    public static Set<ClientTickTask> getStartClientTickTasks() {
+    public static List<ClientTickTask> getStartClientTickTasks() {
         return START_CLIENT_TICK_TASKS;
     }
-    public static Set<DelayedClientTickTask> getStartClientTickTasksDelayed() {
+    public static List<DelayedClientTickTask> getStartClientTickTasksDelayed() {
         return START_CLIENT_TICK_TASKS_DELAYED;
     }
-    public static Set<ClientTickTask> getEndClientTickTasks() {
+    public static List<ClientTickTask> getEndClientTickTasks() {
         return END_CLIENT_TICK_TASKS;
     }
-    public static Set<DelayedClientTickTask> getEndClientTickTasksDelayed() {
+    public static List<DelayedClientTickTask> getEndClientTickTasksDelayed() {
         return END_CLIENT_TICK_TASKS_DELAYED;
     }
-    public static Set<ClientTickTask> getStartClientWorldTickTasks() {
+    public static List<ClientTickTask> getStartClientWorldTickTasks() {
         return START_CLIENT_WORLD_TICK_TASKS;
     }
-    public static Set<DelayedClientTickTask> getStartClientWorldTickTasksDelayed() {
+    public static List<DelayedClientTickTask> getStartClientWorldTickTasksDelayed() {
         return START_CLIENT_WORLD_TICK_TASKS_DELAYED;
     }
-    public static Set<ClientTickTask> getEndClientWorldTickTasks() {
+    public static List<ClientTickTask> getEndClientWorldTickTasks() {
         return END_CLIENT_WORLD_TICK_TASKS;
     }
-    public static Set<DelayedClientTickTask> getEndClientWorldTickTasksDelayed() {
+    public static List<DelayedClientTickTask> getEndClientWorldTickTasksDelayed() {
         return END_CLIENT_WORLD_TICK_TASKS_DELAYED;
     }
-    public static Set<ServerTickTask> getStartServerTickTasks() {
+    public static List<ServerTickTask> getStartServerTickTasks() {
         return START_SERVER_TICK_TASKS;
     }
-    public static Set<DelayedServerTickTask> getStartServerTickTasksDelayed() {
+    public static List<DelayedServerTickTask> getStartServerTickTasksDelayed() {
         return START_SERVER_TICK_TASKS_DELAYED;
     }
-    public static Set<ServerTickTask> getEndServerTickTasks() {
+    public static List<ServerTickTask> getEndServerTickTasks() {
         return END_SERVER_TICK_TASKS;
     }
-    public static Set<DelayedServerTickTask> getEndServerTickTasksDelayed() {
+    public static List<DelayedServerTickTask> getEndServerTickTasksDelayed() {
         return END_SERVER_TICK_TASKS_DELAYED;
     }
-    public static Set<ServerTickTask> getStartServerWorldTickTasks() {
+    public static List<ServerTickTask> getStartServerWorldTickTasks() {
         return START_SERVER_WORLD_TICK_TASKS;
     }
-    public static Set<DelayedServerTickTask> getStartServerWorldTickTasksDelayed() {
+    public static List<DelayedServerTickTask> getStartServerWorldTickTasksDelayed() {
         return START_SERVER_WORLD_TICK_TASKS_DELAYED;
     }
-    public static Set<ServerTickTask> getEndServerWorldTickTasks() {
+    public static List<ServerTickTask> getEndServerWorldTickTasks() {
         return END_SERVER_WORLD_TICK_TASKS;
     }
-    public static Set<DelayedServerTickTask> getEndServerWorldTickTasksDelayed() {
+    public static List<DelayedServerTickTask> getEndServerWorldTickTasksDelayed() {
         return END_SERVER_WORLD_TICK_TASKS_DELAYED;
     }
 

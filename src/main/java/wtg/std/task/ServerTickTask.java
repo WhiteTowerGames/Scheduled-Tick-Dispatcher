@@ -28,6 +28,10 @@ public class ServerTickTask extends AbstractTickTask<MinecraftServer> {
         this(delayedServerTickTask.duration.get(), delayedServerTickTask.getAction());
     }
 
+    public static ServerTickTask restart(ServerTickTask serverTickTask) {
+        return new ServerTickTask(serverTickTask.initialDuration, serverTickTask.getAction());
+    }
+
     /**
      * Performs the task's action on the Minecraft server if the task is incomplete.
      * Decrements the duration and completes the task if the duration reaches zero.
@@ -36,13 +40,7 @@ public class ServerTickTask extends AbstractTickTask<MinecraftServer> {
      */
     @Override
     public void accept(MinecraftServer server) {
-        if (isIncomplete()) {
-            getAction().accept(server);
-            if (duration.decrementAndGet() > 0) {
-                return;
-            }
-            complete();
-        }
+        super.accept(server);
     }
 
 }

@@ -1,5 +1,9 @@
 package wtg.std.task;
 
+
+/**
+ * Utility interface with methods for appending and scheduling tick tasks.
+ */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public interface TickTaskUtils {
 
@@ -114,5 +118,4 @@ public interface TickTaskUtils {
         ServerEvents.registerAt(phase, taskToAppend);
         return taskToAppend;
     }
-
 }

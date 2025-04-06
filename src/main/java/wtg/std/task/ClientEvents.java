@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import wtg.std.BackgroundLifecycleOperationsWrapper;
 import wtg.std.ScheduledTickDispatcher;
 
-import java.util.Set;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -24,8 +24,8 @@ public enum ClientEvents {
     END_CLIENT_WORLD_TICK(BackgroundLifecycleOperationsWrapper::getEndClientWorldTickTasks,
             BackgroundLifecycleOperationsWrapper::getEndClientWorldTickTasksDelayed);
 
-    private final Supplier<Set<ClientTickTask>> tasks;
-    private final Supplier<Set<DelayedClientTickTask>> delayedTasks;
+    private final Supplier<List<ClientTickTask>> tasks;
+    private final Supplier<List<DelayedClientTickTask>> delayedTasks;
     private final int MAX_TASKS_PER_PHASE = 30;
 
     /**
@@ -34,7 +34,7 @@ public enum ClientEvents {
      * @param tasks Supplier for the set of client tick tasks.
      * @param delayedTasks Supplier for the set of delayed client tick tasks.
      */
-    ClientEvents(Supplier<Set<ClientTickTask>> tasks, Supplier<Set<DelayedClientTickTask>> delayedTasks) {
+    ClientEvents(Supplier<List<ClientTickTask>> tasks, Supplier<List<DelayedClientTickTask>> delayedTasks) {
         this.tasks = tasks;
         this.delayedTasks = delayedTasks;
     }
@@ -127,27 +127,8 @@ public enum ClientEvents {
     }
 
     /**
-     * Unregisters a client tick task from a specific phase.
-     *
-     * @param phase The client event phase.
-     * @param task The client tick task to unregister.
-     */
-    public static void unregisterFromPhase(ClientEvents phase, ClientTickTask task) {
-        phase.tasks.get().remove(task);
-    }
-
-    /**
-     * Unregisters a delayed client tick task from a specific phase.
-     *
-     * @param phase The client event phase.
-     * @param task The delayed client tick task to unregister.
-     */
-    public static void unregisterFromPhase(ClientEvents phase, DelayedClientTickTask task) {
-        phase.delayedTasks.get().remove(task);
-    }
-
-    /**
      * Unregisters completed tasks from a specific phase.
+     * Called automatically by the {@link ScheduledTickDispatcher} to clean up completed tasks.
      *
      * @param phase The client event phase.
      */
@@ -186,7 +167,7 @@ public enum ClientEvents {
             logError(task, phase);
         }
     }
-
+    
     /**
      * Logs an error if a task is not found in a specific phase.
      *
