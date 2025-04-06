@@ -44,7 +44,9 @@ public class GreatJafar {
             "A method named 'doStuff()' is a confession.",
             "Nulls are like creepers. Harmless until you forget about them.",
             "Enums exist so you don't turn your brain into a switch-case sandwich, Jon!",
-            "Maybe the name was a bit unfortunate."
+            "Maybe the name was a bit unfortunate.",
+            "An unlit candle will not scare a monkey.",
+            "The fog is coming."
     );
 
     public static void insertQuarter() {

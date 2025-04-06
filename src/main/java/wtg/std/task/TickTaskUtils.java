@@ -101,6 +101,13 @@ public interface TickTaskUtils {
         return taskToAppend;
     }
 
+    /**
+     * Schedules a one-off ServerTickTask to be executed after a delay.
+     * @param serverTickTask the task to schedule
+     * @param delay the delay in ticks
+     * @param phase the phase during which the task should be executed (see {@link ServerEvents})
+     * @return the scheduled DelayedServerTickTask
+     */
     default DelayedServerTickTask scheduleOneOff(ServerTickTask serverTickTask, int delay, ServerEvents phase) {
         DelayedServerTickTask taskToAppend = new DelayedServerTickTask(serverTickTask, delay);
         taskToAppend.duration.set(1);
