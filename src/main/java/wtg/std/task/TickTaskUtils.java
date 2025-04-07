@@ -50,6 +50,22 @@ public interface TickTaskUtils {
     }
 
     /**
+     * Appends a DelayedClientTickTask to be executed after a delay following the end of the given Tick Task.
+     *
+     * @param clientTickTask the task to append after
+     * @param delayAfterEnd         the delay after the end of the given task
+     * @param phase                 the phase during which the task should be executed (see {@link ClientEvents})
+     * @return the appended DelayedClientTickTask
+     */
+    default DelayedClientTickTask appendDelayedAfterEnd(ClientTickTask clientTickTask, int delayAfterEnd, ClientEvents phase) {
+        DelayedClientTickTask taskToAppend = new DelayedClientTickTask(clientTickTask.duration.get(),
+                clientTickTask.getAction(),
+                delayAfterEnd + ((AbstractTickTask<?>) this).duration.get());
+        ClientEvents.registerAt(phase, taskToAppend);
+        return taskToAppend;
+    }
+
+    /**
      * Appends a ServerTickTask to be executed parallel to the given Tick Task.
      *
      * @param serverTickTask the task to append
@@ -87,6 +103,22 @@ public interface TickTaskUtils {
         DelayedServerTickTask taskToAppend = new DelayedServerTickTask(delayedServerTickTask.duration.get(),
                 delayedServerTickTask.getAction(),
                 delayedServerTickTask.delay.get() + delayAfterEnd + ((AbstractTickTask<?>) this).duration.get());
+        ServerEvents.registerAt(phase, taskToAppend);
+        return taskToAppend;
+    }
+
+    /**
+     * Appends a DelayedServerTickTask to be executed after a delay following the end of the given Tick Task.
+     *
+     * @param serverTickTask the task to append after
+     * @param delayAfterEnd         the delay after the end of the given task
+     * @param phase                 the phase during which the task should be executed (see {@link ServerEvents})
+     * @return the appended DelayedServerTickTask
+     */
+    default DelayedServerTickTask appendDelayedAfterEnd(ServerTickTask serverTickTask, int delayAfterEnd, ServerEvents phase) {
+        DelayedServerTickTask taskToAppend = new DelayedServerTickTask(serverTickTask.duration.get(),
+                serverTickTask.getAction(),
+                delayAfterEnd + ((AbstractTickTask<?>) this).duration.get());
         ServerEvents.registerAt(phase, taskToAppend);
         return taskToAppend;
     }

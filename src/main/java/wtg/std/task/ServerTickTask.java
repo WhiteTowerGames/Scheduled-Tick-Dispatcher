@@ -28,8 +28,14 @@ public class ServerTickTask extends AbstractTickTask<MinecraftServer> {
         this(delayedServerTickTask.duration.get(), delayedServerTickTask.getAction());
     }
 
-    public static ServerTickTask restart(ServerTickTask serverTickTask) {
-        return new ServerTickTask(serverTickTask.initialDuration, serverTickTask.getAction());
+
+    /**
+     * Restarts the task with the initial duration and action.
+     *
+     * @return a new instance of ServerTickTask with the initial duration and action
+     */
+    public ServerTickTask restart() {
+        return new ServerTickTask(this.initialDuration, getAction());
     }
 
     /**

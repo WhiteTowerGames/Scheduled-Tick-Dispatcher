@@ -29,14 +29,9 @@ public class ClientTickTask extends AbstractTickTask<Minecraft> {
         this(delayedClientTickTask.duration.get(), delayedClientTickTask.getAction());
     }
 
-    /**
-     * Restarts the given ClientTickTask.
-     *
-     * @param clientTickTask the task to restart
-     * @return a new ClientTickTask with the same initial duration and action
-     */
-    public static ClientTickTask restart(@NotNull ClientTickTask clientTickTask) {
-        return new ClientTickTask(clientTickTask.initialDuration, clientTickTask.getAction());
+
+    public ClientTickTask restart() {
+        return new ClientTickTask(this.initialDuration, getAction());
     }
 
     /**

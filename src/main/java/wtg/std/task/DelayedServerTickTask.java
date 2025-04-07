@@ -30,8 +30,8 @@ package wtg.std.task;
             this(serverTickTask.duration.get(), serverTickTask.getAction(), delay);
         }
 
-        public static DelayedServerTickTask restart(DelayedServerTickTask serverTickTask) {
-            return new DelayedServerTickTask(serverTickTask.initialDuration, serverTickTask.getAction(), serverTickTask.delay.get());
+        public DelayedServerTickTask restart() {
+            return new DelayedServerTickTask(this.initialDuration, getAction(), delay.get());
         }
 
         /**
