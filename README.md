@@ -51,7 +51,7 @@ To ensure stability and prevent abuse:
 
 ## 📜 License
 
-This project is licensed under **CC0-1.0** – the public domain. No strings attached. See the [LICENSE](LICENSE) file for details.
+This project is licensed under **The MIT License**. No strings attached. See the [LICENSE](LICENSE) file for details.
 
 ## 🤝 Contributing
 
