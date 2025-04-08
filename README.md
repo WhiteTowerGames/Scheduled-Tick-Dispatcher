@@ -20,12 +20,14 @@ Add the library as a dependency via Maven:
 ```groovy
 repositories {
     maven {
-        url 'https://your.maven.repo.url'
+        url "https://cursemaven.com"
     }
 }
 
 dependencies {
-    modImplementation 'com.whitetowergames:scheduled-tick-dispatcher-lib:1.0.0'
+//Change latest_version to version of the file you're downloading.
+//Current latest is 6397403.
+    modImplementation "curse.maven:scheduledtickdispatcherlib-1236960:latest_version"
 }
 ```
 Then refresh your project dependencies and you're good to go!
